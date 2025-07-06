@@ -38,11 +38,21 @@ function generate() {
       nextSentence += current;
     }
   }
+
+  // Update the old sentence
+  sentence = nextSentence;
+
+  // Render the sentence as a paragraph element
+  createP(sentence);
 }
 
 function setup() {
   noCanvas();
 
-  // Creates a paragraph element with the characters in axiom
+  // Creates a paragraph element with the characters in axiom/sentence
   createP(axiom);
+
+  // Create button to let the user walk through the generations of string changes
+  var button = createButton("Generate!")
+  button.mousePressed(generate);
 }

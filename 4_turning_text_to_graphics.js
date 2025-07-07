@@ -36,6 +36,19 @@ function generate() {
   createP(sentence);
 }
 
+function turtle() {
+  for (var i = 0; i < sentence.length; ++i) {
+    var current = sentence.charAt(i);
+
+    if (current == "F") {
+      line(0, 0, 0, -len);
+    } else if (current == "+") {
+      rotate(PI/6);
+    }
+
+  }
+}
+
 function setup() {
   createCanvas(400, 400);
   background(51);

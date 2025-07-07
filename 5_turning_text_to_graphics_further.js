@@ -5,7 +5,7 @@
 var axiom = "F";
 var sentence = axiom;
 
-var len = 100;
+var len = 50;
 
 var rules = [];
 rules[0] = {
@@ -56,9 +56,9 @@ function turtle() {
       // Move the frame of reference to the end of the line just drawn
       translate(0, -len);
     } else if (current == "+") {
-      rotate(PI / 6);
+      rotate(angle);
     } else if (current == "-") {
-      rotate(-PI / 6);
+      rotate(-angle);
     } else if (current == "[") {
       // Function in p5.js to save the transformation state. It creates a drawing group that contains it's own styles and transformations.
       push();
@@ -73,6 +73,8 @@ function turtle() {
 function setup() {
   createCanvas(600, 600);
   background(51);
+
+  angle = radians(25);
 
   createP(axiom);
   turtle();

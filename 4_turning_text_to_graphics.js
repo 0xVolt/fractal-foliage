@@ -7,40 +7,41 @@ var sentence = axiom;
 
 var rules = [];
 rules[0] = {
-    a: "F",
-    b: "FF+[+F-F-F]-[-F+F+F]"
+  a: "F",
+  b: "FF+[+F-F-F]-[-F+F+F]"
 }
 
 function generate() {
-    var newSentence = "";
+  var newSentence = "";
 
-    for (var i = 0; i < sentence.length; ++i) {
-        var current = sentence.charAt(i);
-        var found = false;
+  for (var i = 0; i < sentence.length; ++i) {
+    var current = sentence.charAt(i);
+    var found = false;
 
-        for (var j = 0; j < rules.length; ++j) {
-            if (current = rules[j].a) {
-                found = true;
-                newSentence += rules[j].b;
-                break;
-            }
-        }
-
-        if (!found) {
-            newSentence += current;
-        }
+    for (var j = 0; j < rules.length; ++j) {
+      if (current = rules[j].a) {
+        found = true;
+        newSentence += rules[j].b;
+        break;
+      }
     }
 
-    sentence = newSentence;
+    if (!found) {
+      newSentence += current;
+    }
+  }
 
-    createP(sentence);
+  sentence = newSentence;
+
+  createP(sentence);
 }
 
 function setup() {
-    noCanvas();
+  createCanvas(400, 400);
+  background(51);
 
-    createP(axiom);
-    
-    var button = createButton("Generate!");
-    button.mousePressed(generate);
+  createP(axiom);
+  
+  var button = createButton("Generate!");
+  button.mousePressed(generate);
 }

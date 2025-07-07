@@ -30,14 +30,20 @@ function generate() {
   // Let's go! First for loop in over a year!
   for (var i = 0; i < sentence.length; ++i) {
     var current = sentence.charAt(i);
+    var found = false;
     
     // Iterate over list of rule objects
     for (var j = 0; j < rules.length; ++j) {
       if (current = rules[j].a) {
+        found = true;
         nextSentence += rules[j].b;
         // More than one rule won't be true
         break;
       }
+    }
+
+    if (!found) {
+      nextSentence += current;
     }
   }
 

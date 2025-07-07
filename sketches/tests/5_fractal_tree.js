@@ -69,8 +69,13 @@ function turtle() {
   }
 }
 
+function saveSketch() {
+  saveCanvas('fractal', 'png');
+  console.log("Sketch saved!");
+}
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  var canvas = createCanvas(windowWidth, windowHeight);
   // createCanvas(1400, 600);
   background(51);
 
@@ -79,6 +84,9 @@ function setup() {
   createP(axiom);
   turtle();
   
-  var button = createButton("Generate!");
-  button.mousePressed(generate);
+  var generateButton = createButton("Generate");
+  generateButton.mousePressed(generate);
+
+  var saveButton = createButton("Save");
+  saveButton.mousePressed(saveSketch);
 }

@@ -27,6 +27,11 @@ L-Systems are all text based, meaning they apply to characters as any grammar wo
     e. createP(sentence)
 ```
 
+### 2. Rendering Strings to Graphics with a Turtle
+
+A turtle graphics engine is a simple system that interprets movement and drawing commands to render graphics in a 2D space. It uses a virtual "turtle" that tracks its position, direction, and drawing state (pen up/down). In L-systems, recursive string rewriting generates complex symbol sequences like `F+F−F`. These strings are parsed character by character in the rendering loop. Each symbol maps to a turtle command—e.g., `F` moves forward and draws, `+`/`−` rotate the turtle, and `[`/`]` push or pop the turtle’s state. This allows intricate, self-similar patterns to emerge from simple rules using the turtle’s motion.
+
+
 ## References
 - [L-Systems Wikipedia](https://en.wikipedia.org/wiki/L-system)
 - [TheCodingTrain's Video on L-Systems](https://youtu.be/E1B4UoSQMFw?si=WHHvXbic7hPP-Hhd)

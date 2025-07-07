@@ -5,6 +5,8 @@
 var axiom = "F";
 var sentence = axiom;
 
+var len = 100;
+
 var rules = [];
 rules[0] = {
   a: "F",
@@ -34,14 +36,22 @@ function generate() {
   sentence = newSentence;
 
   createP(sentence);
+  turtle();
 }
 
 function turtle() {
+  translate(width / 2, height);
+  background(51);
+  stroke(255);
+
   for (var i = 0; i < sentence.length; ++i) {
     var current = sentence.charAt(i);
 
+    // Manually describe operations for each character in the alphabet
     if (current == "F") {
       line(0, 0, 0, -len);
+      // Move the frame of reference to the end of the line just drawn
+      translate(0, -len);
     } else if (current == "+") {
       rotate(PI/6);
     } else if (current == "-") {
@@ -62,6 +72,7 @@ function setup() {
   background(51);
 
   createP(axiom);
+  turtle();
   
   var button = createButton("Generate!");
   button.mousePressed(generate);

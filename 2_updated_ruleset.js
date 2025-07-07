@@ -31,9 +31,11 @@ function generate() {
   for (var i = 0; i < sentence.length; ++i) {
     var current = sentence.charAt(i);
     
+    // Iterate over list of rule objects
     for (var j = 0; j < rules.length; ++j) {
       if (current = rules[j].a) {
         nextSentence += rules[j].b;
+        // More than one rule won't be true
         break;
       }
     }

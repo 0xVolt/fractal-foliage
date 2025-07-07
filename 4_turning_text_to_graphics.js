@@ -44,6 +44,14 @@ function turtle() {
       line(0, 0, 0, -len);
     } else if (current == "+") {
       rotate(PI/6);
+    } else if (current == "-") {
+      rotate(-PI/6);
+    } else if (current == "[") {
+      // Function in p5.js to save the transformation state. It creates a drawing group that contains it's own styles and transformations.
+      push();
+    } else if (current == "]") {
+      // Encloses the drawing group that started with push()
+      pop();
     }
 
   }

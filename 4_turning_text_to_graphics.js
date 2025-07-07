@@ -40,9 +40,12 @@ function generate() {
 }
 
 function turtle() {
-  translate(width / 2, height);
   background(51);
   stroke(255);
+  
+  // Required since we don't use the draw loop, this makes sure that the translations are always reset when this function is called
+  resetMatrix();
+  translate(width / 2, height);
 
   for (var i = 0; i < sentence.length; ++i) {
     var current = sentence.charAt(i);
@@ -53,9 +56,9 @@ function turtle() {
       // Move the frame of reference to the end of the line just drawn
       translate(0, -len);
     } else if (current == "+") {
-      rotate(PI/6);
+      rotate(PI / 6);
     } else if (current == "-") {
-      rotate(-PI/6);
+      rotate(-PI / 6);
     } else if (current == "[") {
       // Function in p5.js to save the transformation state. It creates a drawing group that contains it's own styles and transformations.
       push();
@@ -68,7 +71,7 @@ function turtle() {
 }
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 600);
   background(51);
 
   createP(axiom);

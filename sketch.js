@@ -17,8 +17,15 @@ let currentScale;
 let scaledCanvas;
 let outputScale = 8; // For an 8K image [8 * DIM (1024)]
 
+// Setup function runs once
 function setup() {
+  canvas = createCanvas(DIM, DIM);
+  pixelDensity(1);
 
+  scaledCanvas = createGraphics(DIM, DIM);
+  scaledCanvas.pixelDensity(1);
+
+  currentScale = 1; // DO NOT TOUCH!
 }
 
 function draw() {

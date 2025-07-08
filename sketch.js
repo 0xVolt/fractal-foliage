@@ -32,9 +32,12 @@ function draw() {
   scaledCanvas.clear();
 
   scaledCanvas.push();
-
   scaledCanvas.scale(currentScale);
   // customCodeSubroutine();
-
   scaledCanvas.pop();
+
+  image(scaledCanvas, 0, 0); // Show sketch on main canvas
+
+  noLoop();
 }
+

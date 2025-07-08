@@ -29,5 +29,12 @@ function setup() {
 }
 
 function draw() {
+  scaledCanvas.clear();
 
+  scaledCanvas.push();
+
+  scaledCanvas.scale(currentScale);
+  // customCodeSubroutine();
+
+  scaledCanvas.pop();
 }

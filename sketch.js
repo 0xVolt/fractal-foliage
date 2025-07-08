@@ -9,12 +9,14 @@ p5.js sketch to generate an L-system with the parameters:
 
 This sketch also contains code to upscale the image and save a copy of the sketch's state. Press the 'e' key to export a high-resolution snapshot of the canvas.
 
+All the logic for the L-system is rendered to the scaled up canvas and then put on screen in the browser with p5.js's image() function.
+
 */
 
 let canvas;
 let DIM = 1024; // Dimensions of the initial canvas
-let currentScale;
-let scaledCanvas;
+let currentScale; // Tracks the active scale factor for drawing, switching between screen and export resolution
+let scaledCanvas; // p5 graphics object for the offscreen graphics buffer
 let outputScale = 8; // For an 8K image [8 * DIM (1024)]
 
 // Setup function runs once
@@ -22,7 +24,7 @@ function setup() {
   canvas = createCanvas(DIM, DIM);
   pixelDensity(1);
 
-  scaledCanvas = createGraphics(DIM, DIM);
+  scaledCanvas = createGraphics(DIM, DIM); // https://p5js.org/reference/p5/createGraphics/
   scaledCanvas.pixelDensity(1);
 
   currentScale = 1; // DO NOT TOUCH!
@@ -36,12 +38,12 @@ function draw() {
   // customCodeSubroutine();
   scaledCanvas.pop();
 
-  image(scaledCanvas, 0, 0); // Show sketch on main canvas
+  image(scaledCanvas, 0, 0); // Copy sketch from graphics buffer to main canvas 
 
   noLoop();
 }
 
-function exportHighResolutionGraphic() {
+function exportHighResolutionImage() {
   currentScale = outputScale;
 
   scaledCanvas = createGraphics(currentScale * DIM, currentScale * DIM);
@@ -49,6 +51,7 @@ function exportHighResolutionGraphic() {
   draw();
   save(scaledCanvas, "high_resolution_image", 'png');
   currentScale = 1; // Reset to default scale 1:1
-  scaledCanvas = createGraphics(DIM, DIM);
+  // Lower-powered machines or browsers have strict memory limits; a huge buffer always active may cause crashes or degraded interaction
+  scaledCanvas = createGraphics(DIM, DIM); 
   draw();
 }

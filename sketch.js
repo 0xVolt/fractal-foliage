@@ -41,3 +41,14 @@ function draw() {
   noLoop();
 }
 
+function exportHighResolutionGraphic() {
+  currentScale = outputScale;
+
+  scaledCanvas = createGraphics(currentScale * DIM, currentScale * DIM);
+
+  draw();
+  save(scaledCanvas, "high_resolution_image", 'png');
+  currentScale = 1; // Reset to default scale 1:1
+  scaledCanvas = createGraphics(DIM, DIM);
+  draw();
+}

@@ -55,3 +55,12 @@ function exportHighResolutionImage() {
   scaledCanvas = createGraphics(DIM, DIM); 
   draw();
 }
+
+function keyReleased() { if (key == 'e') exportHighResolutionImage(); }
+
+// The sketch is enclosed in this function with the graphics being drawn into the scaled canvas
+// Notice how all drawing functions begin with "scaledCanvas."
+
+function customCodeSubroutine() {
+  // TODO!
+}

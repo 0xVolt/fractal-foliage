@@ -1,5 +1,4 @@
 /* 
-
 Code by Desh Iyer.
 
 p5.js sketch to generate an L-system with the parameters:
@@ -10,7 +9,6 @@ p5.js sketch to generate an L-system with the parameters:
 This sketch also contains code to upscale the image and save a copy of the sketch's state. Press the 'e' key to export a high-resolution snapshot of the canvas.
 
 All the logic for the L-system is rendered to the scaled up canvas and then put on screen in the browser with p5.js's image() function.
-
 */
 
 let canvas;

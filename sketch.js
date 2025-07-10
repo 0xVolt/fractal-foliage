@@ -23,7 +23,7 @@ function setup() {
   pixelDensity(1);
 
   scaledCanvas = createGraphics(DIM, DIM); // https://p5js.org/reference/p5/createGraphics/
-  scaledCanvas.pixelDensity(1);
+  scaledCanvas.pixelDensity(1); // Prevent any unwanted upscaling by the browser or display; maintain consistency
 
   currentScale = 1; // DO NOT TOUCH!
 }

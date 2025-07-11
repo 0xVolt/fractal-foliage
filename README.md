@@ -35,4 +35,4 @@ A turtle graphics engine is a simple system that interprets movement and drawing
 ## References
 - [L-Systems Wikipedia](https://en.wikipedia.org/wiki/L-system)
 - [TheCodingTrain's Video on L-Systems](https://youtu.be/E1B4UoSQMFw?si=WHHvXbic7hPP-Hhd)
-- [`p5.js` Documentation on push() and pop() to save transformation states for drawing groups] (https://p5js.org/reference/p5/push/)
+- [`p5.js` Documentation on push() and pop() to save transformation states for drawing groups](https://p5js.org/reference/p5/push/)

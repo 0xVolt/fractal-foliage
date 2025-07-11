@@ -54,11 +54,27 @@ function exportHighResolutionImage() {
   draw();
 }
 
-function keyReleased() { if (key == 'e') exportHighResolutionImage(); }
+function keyReleased() { 
+  if (key == 'e') 
+    exportHighResolutionImage(); 
+}
 
-// The sketch is enclosed in this function with the graphics being drawn into the scaled canvas
-// Notice how all drawing functions begin with "scaledCanvas."
+// The rest of the code handles the logic to create and render the L-system into the scaled canvas. Notice how all drawing functions begin with "scaledCanvas."
+
+let axiom = "F";
+let sentence = axiom;
+
+let lineLen = 200;
+let angle;
+
+let rules = [];
+rules[0] = {
+  a: "F", // Input string
+  b: "FF+[+F-F-F]-[-F+F+F]" // Output string
+}
+
+function setupParameters() {
+}
 
 function customCodeSubroutine() {
-  // TODO!
 }

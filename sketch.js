@@ -74,6 +74,7 @@ rules[0] = {
 }
 
 function setupParameters() {
+  scaledCanvas.background(51);
 }
 
 function customCodeSubroutine() {

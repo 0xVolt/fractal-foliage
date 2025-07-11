@@ -32,10 +32,16 @@ function setup() {
 function draw() {
   scaledCanvas.clear();
 
+  //* Wrapper code for the scaledCanvas
   scaledCanvas.push();
+
   scaledCanvas.scale(currentScale);
+  let generateButton = createButton("Generate");
+  generateButton.mousePressed(runFractalForOneGeneration);
+
   setupParameters();
   // customCodeSubroutine();
+  
   scaledCanvas.pop();
 
   image(scaledCanvas, 0, 0); // Copy sketch from graphics buffer to main canvas 
@@ -76,8 +82,74 @@ rules[0] = {
   b: "FF+[+F-F-F]-[-F+F+F]" // Output string
 }
 
+function runTurtleOnce() {
+  scaledCanvas.background(51);
+  scaledCanvas.resetMatrix(); // Required for no draw loop, this makes sure that the translations are always reset when this function is called
+  scaledCanvas.translate(width / 2, height);
+  scaledCanvas.stroke(255, 100);
+
+  for (var i = 0; i < sentence.length; ++i) {
+    var current = sentence.charAt(i);
+
+    // Manually describe operations for each character in the alphabet
+    if (current == "F") {
+      scaledCanvas.line(0, 0, 0, -lineLen); // Move the frame of reference to the end of the line just drawn
+      scaledCanvas.translate(0, -lineLen);
+    } else if (current == "+") {
+      scaledCanvas.rotate(angle);
+    } else if (current == "-") {
+      scaledCanvas.rotate(-angle);
+    } else if (current == "[") {
+      // Function in p5.js to save the transformation state. It creates a drawing group that contains it's own styles and transformations.
+      scaledCanvas.push();
+    } else if (current == "]") {
+      // Encloses the drawing group that started with push()
+      scaledCanvas.pop();
+    }
+  }
+}
+
+function runFractalForOneGeneration() {
+  // Shrink the line by some scaling factor every time function is called
+  lineLen *= 0.5;
+  let newSentence = "";
+
+  for (let i = 0; i < sentence.length; i++) {
+    let current = sentence.charAt(i);
+    let found = false;
+
+    for (let j = 0; j < rules.length; j++) {
+      if (current == rules[j].a) {
+        found = true;
+        newSentence += rules[j].b;
+        break;
+      }
+    }
+
+    if (!found) {
+      newSentence += current;
+    }
+  }
+
+  sentence = newSentence;
+
+  scaledCanvas.createP(sentence);
+  runTurtleOnce();
+}
+
 function setupParameters() {
   scaledCanvas.background(51);
+
+  angle = radians(25);
+
+  // scaledCanvas.createP(axiom);
+  runTurtleOnce();
+
+  // let generateButton = createButton("Generate");
+  // generateButton.mousePressed(runFractalForOneGeneration);
+
+  // let saveButton = scaledCanvas.createButton("Save");
+  // saveButton.mousePressed(saveSketch);
 }
 
 function customCodeSubroutine() {

@@ -28,11 +28,13 @@ function setup() {
   currentScale = 1; // DO NOT TOUCH!
 }
 
+//! Effectively your "main()" function!
 function draw() {
   scaledCanvas.clear();
 
   scaledCanvas.push();
   scaledCanvas.scale(currentScale);
+  setupParameters();
   // customCodeSubroutine();
   scaledCanvas.pop();
 
@@ -54,6 +56,7 @@ function exportHighResolutionImage() {
   draw();
 }
 
+function mousePressed() { loop(); }
 function keyReleased() { 
   if (key == 'e') 
     exportHighResolutionImage(); 

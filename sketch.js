@@ -9,6 +9,10 @@ p5.js sketch to generate an L-system with the parameters:
 This sketch also contains code to upscale the image and save a copy of the sketch's state. Press the 'e' key to export a high-resolution snapshot of the canvas.
 
 All the logic for the L-system is rendered to the scaled up canvas and then put on screen in the browser with p5.js's image() function.
+
+
+? Ideas:
+- Apply scaling factor not just to len but to angle/alpha value
 */
 
 let canvas;
@@ -34,14 +38,8 @@ function draw() {
 
   //* Wrapper code for the scaledCanvas
   scaledCanvas.push();
-
   scaledCanvas.scale(currentScale);
-  let generateButton = createButton("Generate");
-  generateButton.mousePressed(runFractalForOneGeneration);
-
-  setupParameters();
-  // customCodeSubroutine();
-  
+  scaledCanvasSubroutine();
   scaledCanvas.pop();
 
   image(scaledCanvas, 0, 0); // Copy sketch from graphics buffer to main canvas 
@@ -69,11 +67,11 @@ function keyReleased() {
 }
 
 // The rest of the code handles the logic to create and render the L-system into the scaled canvas. Notice how all drawing functions begin with "scaledCanvas."
-
 let axiom = "F";
 let sentence = axiom;
+let NUM_GENERATIONS = 4;
 
-let lineLen = 200;
+let lineLen = 250;
 let angle;
 
 let rules = [];
@@ -85,7 +83,7 @@ rules[0] = {
 function runTurtleOnce() {
   scaledCanvas.background(51);
   scaledCanvas.resetMatrix(); // Required for no draw loop, this makes sure that the translations are always reset when this function is called
-  scaledCanvas.translate(width / 2, height);
+  scaledCanvas.translate(width / 2.5, height);
   scaledCanvas.stroke(255, 100);
 
   for (var i = 0; i < sentence.length; ++i) {
@@ -133,24 +131,18 @@ function runFractalForOneGeneration() {
 
   sentence = newSentence;
 
-  scaledCanvas.createP(sentence);
+  // scaledCanvas.createP(sentence);
   runTurtleOnce();
 }
 
-function setupParameters() {
+function scaledCanvasSubroutine() {
   scaledCanvas.background(51);
 
   angle = radians(25);
 
-  // scaledCanvas.createP(axiom);
   runTurtleOnce();
 
-  // let generateButton = createButton("Generate");
-  // generateButton.mousePressed(runFractalForOneGeneration);
-
-  // let saveButton = scaledCanvas.createButton("Save");
-  // saveButton.mousePressed(saveSketch);
-}
-
-function customCodeSubroutine() {
+  for (let i = 0; i < NUM_GENERATIONS; i++) {
+    runFractalForOneGeneration();
+  }
 }

@@ -13,6 +13,8 @@ All the logic for the L-system is rendered to the scaled up canvas and then put 
 
 ? Ideas:
 - Apply scaling factor not just to len but to angle/alpha value
+- Change canvas to higher resolution and set fractal length to be a factor of canvas dims  
+
 */
 
 let canvas;
